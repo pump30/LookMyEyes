@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>眨眼检测器</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <noscript>
+    <div style="text-align:center;padding:40px;color:#e0e0e0;background:#1a1a2e;min-height:100vh;">
+      此应用需要启用 JavaScript 才能运行
+    </div>
+  </noscript>
+
+  <!-- Header -->
+  <header class="header">
+    <h1 class="header__title">👁 眨眼检测器</h1>
+    <div class="header__actions">
+      <button id="btn-toggle" class="btn btn--primary" disabled>加载中...</button>
+      <button id="btn-history" class="btn btn--secondary">历史记录</button>
+    </div>
+  </header>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="stat-card">
+      <div class="stat-card__label">眨眼次数</div>
+      <div class="stat-card__value stat-card__value--cyan" id="stat-count">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__label">频率/分钟</div>
+      <div class="stat-card__value stat-card__value--green" id="stat-rate">0.0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__label">运行时长</div>
+      <div class="stat-card__value stat-card__value--yellow" id="stat-duration">0:00</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__label">眼部状态</div>
+      <div class="stat-card__value" id="stat-status">
+        <span class="status-dot status-dot--gray"></span> 待启动
+      </div>
+    </div>
+  </div>
+
+  <!-- Camera View -->
+  <div class="camera-container">
+    <video id="video" autoplay playsinline></video>
+    <canvas id="overlay"></canvas>
+    <div id="camera-message" class="camera-message">点击"开始检测"启动摄像头</div>
+  </div>
+
+  <!-- Chart -->
+  <div class="chart-container">
+    <canvas id="chart"></canvas>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- History Modal -->
+  <div id="history-modal" class="modal hidden">
+    <div class="modal__content">
+      <div class="modal__header">
+        <h2>历史记录</h2>
+        <button id="btn-close-modal" class="btn btn--icon">&times;</button>
+      </div>
+      <div class="modal__body" id="history-list"></div>
+      <div class="modal__footer">
+        <button id="btn-clear-history" class="btn btn--danger">清除所有记录</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/detector.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/history.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
